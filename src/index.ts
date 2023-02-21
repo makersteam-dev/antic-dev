@@ -1,59 +1,56 @@
 if (window.matchMedia('(min-width: 992px)').matches) {
-  const observerCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const navbarLinks = document.querySelectorAll('.nav-link-text');
-        const navbarLogo = document.querySelector('.antic-logo');
-        const navbarLinkWrapper = document.querySelectorAll('.nav-link-line');
-        const buttonNavbar = document.querySelector('.button_navbar');
-        const navbarBurger = document.querySelector('.hamburger');
+  const observer = new window.IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const navbarLinks = document.querySelectorAll('.nav-link-text');
+          const navbarLogo = document.querySelector('.antic-logo');
+          const navbarLinkWrapper = document.querySelectorAll('.nav-link-line');
+          const buttonNavbar = document.querySelector('.button_navbar');
+          const navbarBurger = document.querySelector('.hamburger');
 
-        navbarLinks.forEach((link) => {
-          link.style.color = 'white';
-        });
+          navbarLinks.forEach((link) => {
+            link.style.color = 'white';
+          });
 
-        navbarLogo.style.color = 'white';
+          navbarLogo.style.color = 'white';
 
-        buttonNavbar.classList.add('is--invert');
-        navbarBurger.classList.add('is--invert');
-        navbarLinkWrapper.forEach((linkLine) => {
-          linkLine.style.backgroundColor = 'white';
-        });
-      } else {
-        const navbarLinks = document.querySelectorAll('.nav-link-text');
-        const navbarLogo = document.querySelector('.antic-logo');
-        const navbarLinkWrapper = document.querySelectorAll('.nav-link-line');
-        const buttonNavbar = document.querySelector('.button_navbar');
-        const navbarBurger = document.querySelector('.hamburger');
+          buttonNavbar.classList.add('is--invert');
+          navbarBurger.classList.add('is--invert');
+          navbarLinkWrapper.forEach((linkLine) => {
+            linkLine.style.backgroundColor = 'white';
+          });
+        } else {
+          const navbarLinks = document.querySelectorAll('.nav-link-text');
+          const navbarLogo = document.querySelector('.antic-logo');
+          const navbarLinkWrapper = document.querySelectorAll('.nav-link-line');
+          const buttonNavbar = document.querySelector('.button_navbar');
+          const navbarBurger = document.querySelector('.hamburger');
 
-        navbarLinks.forEach((link) => {
-          link.style.color = '#22222d';
-        });
+          navbarLinks.forEach((link) => {
+            link.style.color = '#22222d';
+          });
 
-        navbarLogo.style.color = '#22222d';
+          navbarLogo.style.color = '#22222d';
 
-        buttonNavbar.classList.remove('is--invert');
-        navbarBurger.classList.remove('is--invert');
+          buttonNavbar.classList.remove('is--invert');
+          navbarBurger.classList.remove('is--invert');
 
-        navbarLinkWrapper.forEach((linkLine) => {
-          linkLine.style.backgroundColor = '#22222d';
-        });
-      }
-    });
-  };
+          navbarLinkWrapper.forEach((linkLine) => {
+            linkLine.style.backgroundColor = '#22222d';
+          });
+        }
+      });
+    },
+    {
+      rootMargin: '0px 0px -100% 0px',
+    }
+  );
 
-  const observer = new window.IntersectionObserver(observerCallback, {
-    rootMargin: '0px 0px -100% 0px',
-  });
-
-  // Observe elements with "mt-el=dark-section" attribute
   const darkSections = document.querySelectorAll('[mt-el=dark-section]');
   darkSections.forEach((section) => {
     observer.observe(section);
   });
-
-  // Call the observer callback once on page load
-  observerCallback([]);
 } else if (window.matchMedia('(max-width: 991px)').matches) {
   const observer = new window.IntersectionObserver(
     (entries) => {
