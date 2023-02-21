@@ -77,4 +77,3 @@ if (window.matchMedia('(min-width: 992px)').matches) {
     observer.observe(section);
   });
 }
-console.log('blabla');
